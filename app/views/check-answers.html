@@ -1,0 +1,37 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Check your answers before continuing</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: { text: "Destination" },
+            value: { text: data['destination'] },
+            actions: { items: [{ href: "/destination", text: "Change" }] }
+          },
+          {
+            key: { text: "Full name" },
+            value: { text: data['full-name'] },
+            actions: { items: [{ href: "/personal-details", text: "Change" }] }
+          },
+          {
+            key: { text: "Address" },
+            value: { text: data['address'] },
+            actions: { items: [{ href: "/personal-details", text: "Change" }] }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({ text: "Confirm and continue" }) }}
+
+    </div>
+  </div>
+{% endblock %}

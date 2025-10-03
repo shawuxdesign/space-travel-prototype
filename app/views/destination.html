@@ -1,0 +1,36 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Choose your destination – {{ serviceName }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Where would you like to go?</h1>
+
+      <form action="/destination" method="post">
+
+        {{ govukRadios({
+          idPrefix: "destination",
+          name: "destination",
+          fieldset: {
+            legend: {
+              text: "Choose one option",
+              isPageHeading: false
+            }
+          },
+          items: [
+            { value: "Moon", text: "The Moon" },
+            { value: "Mars", text: "Mars" }
+          ]
+        }) }}
+
+        {{ govukButton({ text: "Continue" }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
