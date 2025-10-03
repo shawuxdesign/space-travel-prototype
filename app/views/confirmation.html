@@ -1,0 +1,18 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Confirmation – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Application complete</h1>
+
+      <p>Thanks {{ data['fullName'] }}.</p>
+      <p>We’ve received your application to travel to <strong>{{ data['destination'] }}</strong>.</p>
+      <p>Your address on file is:</p>
+      <p>{{ data['address'] | nl2br }}</p>
+    </div>
+  </div>
+{% endblock %}

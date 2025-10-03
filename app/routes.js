@@ -6,15 +6,13 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-// Add your routes here
-
+// Start page
 router.get('/start', function (req, res) {
   res.render('start')
 })
 
-// Start page
-router.get('/start', function (req, res) {
-  res.render('start')
+router.post('/start', function (req, res) {
+  res.redirect('/destination')
 })
 
 // Destination page
@@ -23,6 +21,8 @@ router.get('/destination', function (req, res) {
 })
 
 router.post('/destination', function (req, res) {
+  req.session.data = req.session.data || {}
+  req.session.data.destination = req.body.destination
   res.redirect('/personal-details')
 })
 
@@ -32,10 +32,27 @@ router.get('/personal-details', function (req, res) {
 })
 
 router.post('/personal-details', function (req, res) {
+  req.session.data = req.session.data || {}
+  req.session.data.fullName = req.body.fullName
+  req.session.data.address = req.body.address
   res.redirect('/check-answers')
 })
 
 // Check answers page
 router.get('/check-answers', function (req, res) {
-  res.render('check-answers')
+  res.render('check-answers', { data: req.session.data })
 })
+
+router.post('/check-answers', function (req, res) {
+  res.redirect('/confirmation')
+})
+
+// Confirmation page
+router.get('/confirmation', function (req, res) {
+  res.render('confirmation', {
+    serviceName: 'Space Travel',
+    data: req.session.data
+  })
+})
+
+module.exports = router
