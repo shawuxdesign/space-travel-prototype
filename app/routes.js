@@ -6,6 +6,12 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+// Redirect the root URL to the start page
+router.get('/', function (req, res) {
+  res.redirect('/start')
+})
+
+
 // Start page
 router.get('/start', function (req, res) {
   // Clear any old session data
