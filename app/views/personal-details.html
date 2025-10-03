@@ -1,52 +1,37 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Enter your details – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
+  Your details – Space Travel
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-        Enter your details
-      </h1>
+      <h1 class="govuk-heading-l">Enter your personal details</h1>
 
-      <form class="form" action="/personal-details" method="post">
+      <form action="/personal-details" method="post">
 
-        {{ govukInput({
-          label: {
-            text: "Full name"
-          },
-          id: "full-name",
-          name: "full-name",
-          autocomplete: "name"
-        }) }}
+        <!-- Full name -->
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="fullName">
+            Full name
+          </label>
+          <input class="govuk-input" id="fullName" name="fullName" type="text" value="{{ data.fullName or '' }}">
+        </div>
 
-        {{ govukTextarea({
-          name: "address",
-          id: "address",
-          label: {
-            text: "Address"
-          },
-          rows: 4
-        }) }}
+        <!-- Address -->
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="address">
+            Address
+          </label>
+          <textarea class="govuk-textarea" id="address" name="address">{{ data.address or '' }}</textarea>
+        </div>
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        {{ govukButton({ text: "Continue" }) }}
 
       </form>
 
     </div>
   </div>
-
 {% endblock %}

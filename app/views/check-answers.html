@@ -19,7 +19,7 @@
           },
           {
             key: { text: "Full name" },
-            value: { text: data['full-name'] },
+            value: { text: data['fullName'] },
             actions: { items: [{ href: "/personal-details", text: "Change" }] }
           },
           {
@@ -30,7 +30,9 @@
         ]
       }) }}
 
-      {{ govukButton({ text: "Confirm and continue" }) }}
+      <form method="post" action="/check-answers">
+        {{ govukButton({ text: "Confirm and continue" }) }}
+      </form>
 
     </div>
   </div>
