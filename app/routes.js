@@ -8,8 +8,11 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 // Start page
 router.get('/start', function (req, res) {
+  // Clear any old session data
+  req.session.data = {}
   res.render('start')
 })
+
 
 router.post('/start', function (req, res) {
   res.redirect('/destination')
